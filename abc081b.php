@@ -1,33 +1,54 @@
 <?php
 
 $n = fgets(STDIN);
-// $array = [5, 6, 8, 10];
-$array = [];
-$array = explode(' ', trim(fgets(STDIN)));
+$nmbrs = explode(' ', trim(fgets(STDIN)));
+$cnt = 0;
 
-$judge = true;
-$result = 0;
+while(true){
 
-while($judge){
+    foreach($nmbrs as $key => $value){
 
-    $counter = 0;
-
-    foreach($array as $value){
-
-        $array[$counter] /= 2;
-
-        if ($value  % 2 == 0){
-            $counter += 1;
+        if($value %2 != 0){
+            print $cnt;
+            exit;
         }
-        // counter =123
+
+        $nmbrs[$key] = $value / 2;
+
     }
 
-    $judge = ($counter == $n) ? true : false;
-    $result = ($judge == true) ? $result += 1 : $result;
+    $cnt++;
 
 }
 
-print($result);
+// $n = fgets(STDIN);
+// // $array = [5, 6, 8, 10];
+// $array = [];
+// $array = explode(' ', trim(fgets(STDIN)));
+
+// $judge = true;
+// $result = 0;
+
+// while($judge){
+
+//     $counter = 0;
+
+//     foreach($array as $value){
+
+//         $array[$counter] /= 2;
+
+//         if ($value  % 2 == 0){
+//             $counter += 1;
+//         }
+//         // counter =123
+//     }
+
+//     $judge = ($counter == $n) ? true : false;
+//     $result = ($judge == true) ? $result += 1 : $result;
+
+// }
+
+// print($result);
 
 // function division$n, $array){
 
