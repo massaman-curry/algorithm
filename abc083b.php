@@ -1,6 +1,26 @@
 <?php
 
 fscanf(STDIN, "%d %d %d", $n, $a, $b);
+$op = 0;
+
+for($i = 1; $i <= $n; $i++){
+
+    $i_ary = str_split($i);
+    $sum_i = array_sum($i_ary);
+
+    if($a <= $sum_i && $sum_i <= $b){
+        $op += $i;
+    }
+
+}
+
+print($op);
+
+
+
+/*
+
+fscanf(STDIN, "%d %d %d", $n, $a, $b);
 $result = 0;
 
 for($i = 1; $i <= $n; $i++){ //1,2,3...20
@@ -36,3 +56,5 @@ for($i = 1; $i <= $n; $i++){ //1,2,3...20
 }
 
 print($result);
+
+*/
