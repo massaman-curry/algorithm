@@ -1,4 +1,28 @@
 <?php
+$s = trim(fgets(STDIN));
+
+$s = preg_replace('/eraser/', '', $s);
+$s = preg_replace('/erase/', '', $s);
+$s = preg_replace('/dreamer/', '', $s);
+$s = preg_replace('/dream/', '', $s);
+
+print $s == '' ? 'YES' : 'NO';
+
+
+
+
+
+/*
+$s = 'dreamerasedreamererase';
+$ptn_list = ['dreamer', 'dream', 'eraser', 'erase'];
+$ptn = 'dream';
+
+for($i = 0; $i <4 ; $i++){
+    
+
+}
+// preg_match()
+
 
 $s = 'erasedreamer';
 $ptn_list = ['dream', 'dreamer', 'erase', 'eraser'];
@@ -18,3 +42,5 @@ for($i = 0; $i < 4; $i++){
 }
 
 print $op;
+
+*/
