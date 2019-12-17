@@ -1,4 +1,25 @@
 <?php
+
+fscanf(STDIN, "%d", $n);
+$result = FALSE;
+$cnt = 0;
+
+for($i = 0; $i < $n; $i++){
+
+        fscanf(STDIN, "%d %d %d",$t, $x, $y);
+        $far = $x + $y;
+        
+        if(($t >= $far) && (($t - $far) %2 == 0)){
+            $result = TRUE;
+            $cnt += 1;
+        }
+
+}
+
+print ($result == TRUE) && ($cnt == $n) ? 'Yes' : 'No';
+
+
+/*
 // 2
 // 5 1 1
 // 100 1 1
@@ -44,3 +65,5 @@ print($result);
 //         print 'Yes';
 //     }
 // }
+
+*/
