@@ -42,17 +42,12 @@ while (!empty($que)){
             $k = array_search($v, $adj) == 0 ? 1 : 0;
             $nv = $adj[$k];
 
-            if($dist[$nv] != -1){
+            if($dist[$nv] == -1){
 
-                continue;
-
-                // $dist[$nv] = $dist[$v] + 1;
-                // array_push($que, $nv);
+                $dist[$nv] = $dist[$v] + 1;
+                array_push($que, $nv);
 
             }
-
-            $dist[$nv] = $dist[$v] + 1;
-            array_push($que, $nv);
 
         }
 
@@ -60,6 +55,8 @@ while (!empty($que)){
 
 
 }
+
+var_dump($dist);
 
 
 
