@@ -40,14 +40,19 @@ while (!empty($que)){
         if(in_array($v, $adj)){
             // $adj[0]か[1]、$vでない値を$queに挿入
             $k = array_search($v, $adj) == 0 ? 1 : 0;
-            $nk = $adj[$k];
+            $nv = $adj[$k];
 
-            if($dist[$nk] == -1){
+            if($dist[$nv] != -1){
 
-                $dist[$nk] = $dist[$v] + 1;
-                array_push($que, $nk);
+                continue;
+
+                // $dist[$nv] = $dist[$v] + 1;
+                // array_push($que, $nv);
 
             }
+
+            $dist[$nv] = $dist[$v] + 1;
+            array_push($que, $nv);
 
         }
 
