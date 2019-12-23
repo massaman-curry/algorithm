@@ -24,7 +24,7 @@ function dnf($v, $checked){
     $nxt = []; //隣接値
 
 //$nxtの値が、checkedに無いか、確認。
-    if(in_array($checked)) return;
+    if(in_array($v, $checked)) return 1;
 //$checked[]に$vを挿入。
     $checked[] = $v;
 // $vを$adj_listから探して、その値を$nxt_queに。
@@ -36,7 +36,7 @@ function dnf($v, $checked){
     }
 //$nxt_queの1つずつ取得してループ。
     // $nv = array_shift($next_que);
-    foreach($nxt as $nv) dnf($nv);
+    foreach($nxt as $nv) dnf($nv, $checked);
 
 }
 
