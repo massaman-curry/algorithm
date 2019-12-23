@@ -1,6 +1,5 @@
 <?php
 
-
 // 7 7
 // 1 3
 // 2 7
@@ -10,92 +9,61 @@
 // 5 6
 // 6 7
 
-$adj_list = [[1, 3], [2, 7], [3, 4], [4, 5], [4, 6], [5, 6], [6, 7]];
-// $adj_lists = [
-//     []
-// ];
+$adj_list = [[1, 3], [2, 7], [3, 4], [4, 5]. [4, 6], [5, 6], [6, 7]];
 
-$n = 7; //頂点の数
-$m = 7; //辺の数
+$n = 7;
+$m = 7;
 
-$dist = array_fill(1, $n, -1);
-$que = [];
+$checked = [];
+// $dist = array_fill(1, $n, FALSE);
+// $checked[] = 1;
 
-$dist[1] = 0;
-array_push($que, 1);
+function dnf($v, $checked){
 
-// var_dump($que);
-// var_dump($dist);
+    global $adj_list;
+    $nxt = []; //隣接値
 
-while (!empty($que)){
-
-    $v = array_shift($que);
-    
-    foreach($adj_list as $adj){ 
-        //$v(つまり4など)の入った配列$adj_listからforeachで取得（[3, 4],[4, 5], [4, 6])、。
-
-        // if($dist[$v] != -1) continue;
-        //↑検査済みならもう検査しない。
-        //adj_list を adjとして一つずつ取出し、queから取出した値（$v）が含まれている配列の、ペアの値（隣接の頂点）を取得。
+//$nxtの値が、checkedに無いか、確認。
+    if(in_array($checked)) return;
+//$checked[]に$vを挿入。
+    $checked[] = $v;
+// $vを$adj_listから探して、その値を$nxt_queに。
+    foreach($adj_list as $adj){
         if(in_array($v, $adj)){
-            // $adj[0]か[1]、$vでない値を$queに挿入
-            $k = array_search($v, $adj) == 0 ? 1 : 0;
-            $nv = $adj[$k];
-
-            if($dist[$nv] == -1){
-
-                $dist[$nv] = $dist[$v] + 1;
-                array_push($que, $nv);
-
-            }
-
+            $k = 1 - (array_search($v, $adj));
+            $nxt[] = $adj[$k];
         }
-
     }
-
+//$nxt_queの1つずつ取得してループ。
+    // $nv = array_shift($next_que);
+    foreach($nxt as $nv) dnf($nv);
 
 }
 
-var_dump($dist);
+
+    // foreach($adj_list as $adj){
+
+    //     if(in_array($v, $adj)){
+
+    //         $k = array_search($v, $adj) == 0 ? 1 : 0;
+    //         $nv = $adj[$k];
+    //         $array[$v]
+    //         // $array[$v][] = $adj[$k];
+    //         //$vの隣接値を取得し、$array[]の$v番目に収納
+    //         foreach($array[$v] as $nv){
+
+    //             dnf($array[$nv]);
+
+    //         }
+
+    //     }
+
+    // }
 
 
+// function sth($v){
 
-
-
-
-
-
-
-
-
-
-
-// function($input){
-
-    
+//     $v;
 // }
 
-// for($i = 0; $i < count($arrays); $i++){
-
-//     if($arrays[$i][0] == $search_point){
-
-
-
-//     }
-
-// }
-
-
-
-// foreach($arrays as $array){
-//     [
-
-//     foreach($array as $value){
-
-//         $judge = ($value == $search_point) ?: FALSE;
-
-//     }
-
-//     $array[0] == $search_point ? $start[] = $array : '';
-
-// }
+// in_array(-1, $dist) == 0;
