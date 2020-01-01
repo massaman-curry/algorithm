@@ -10,27 +10,37 @@
 
 fscanf(STDIN, "%d %d", $n, $k);
 $array = [];
-$cnt = 0;
+$sum = 0;
 
 for($i = 0; $i < $n; $i++){
     fscanf(STDIN,  "%d %d", $a, $b);
+    // if(array_key_exists($a, $array)){
+    //     $array[$a] = $b;
+    //     continue;
+    // }
     $array[$a] += $b;
 }
 
-usort($array, function($a, $b){
+uksort($array, function($a, $b){
     return $a <=> $b;
 });
 
-while(true){
-    $sum = 0;
-    foreach($array as $key => $value){
-        $sum += $value;
-    }
+// var_dump($array);
 
-    if($sum >= $k){}
+// while($sum < $k){
+//     $sum = 0;
 
-    //ここで、$arrayから$key => $valueを取り出して、$kを超えるまで$valueを足し、超えた瞬間の$keyを取出したい
+foreach($array as $key => $value){
+    $sum += $value;
+    if($sum >= $k){
+        print $key; 
+    break;
+    };
 }
+
+//https://atcoder.jp/contests/abc061/submissions/1285217    の解答では、$kから引いて0になるまでにしてる。
+    //ここで、$arrayから$key => $valueを取り出して、$kを超えるまで$valueを足し、超えた瞬間の$keyを取出したい
+// }
 
 // foreach($array as $key => $value){
 //     for($i = 0; $i < $k;){
