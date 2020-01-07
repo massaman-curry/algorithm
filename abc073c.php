@@ -16,7 +16,7 @@ $cnt = 0;
 while($n--){
     fscanf(STDIN, "%d", $v);
     // $nmbr[$v] = $nmbr[$v] ? $nmbr[$v] + 1 : 1;　$nmbr[$v]が存在しないと、phpがundefined offsetエラーを吐くので、だめ
-    $nmbr[$v] = array_key_exists($v, $nmbr) ? ++$nmbr[$v] : 1;
+    $nmbr[$v] = isset($nmbr[$v]) ? ++$nmbr[$v] : 1;
 }
 
 // var_dump($nmbr);
