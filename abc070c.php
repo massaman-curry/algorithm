@@ -1,27 +1,37 @@
 <?php
-$n = fgets(STDIN);
-for($i = 0; $i < $n; $i++){
-    $clock[] = fgets(STDIN);
-}
-$clock = array_map("intval", $clock);
+
+fscanf(STDIN, "%d", $n);
+$lcm = 1;
 
 function gcd($m, $n){
-    if($n > $m) list($m, $n) = [$n, $m];
-    while($n != 0){
-        $tmp = $n;
-        $n = $m % $n;
-        $m = $tmp;
-    }
-    return  $m;
+    if($m < $n) list($m, $n) = [$n, $m];
+    return $m % $n  ? gcd($n, $m % $n) : $n;
 }
 
-while(count($clock) > 1){
-    $m = array_pop($clock);
-    $n = array_pop($clock);
-    $clock[] = $m / gcd($m, $n) * $n;
+while($n--){
+    fscanf(STDIN, "%d", $t);
+    $lcm = $t / gcd($t, $lcm) * $lcm;
 }
 
-print $clock[0];
+print $lcm;
+
+// function gcd($m, $n){
+//     if($n > $m) list($m, $n) = [$n, $m];
+//     while($n != 0){
+//         $tmp = $n;
+//         $n = $m % $n;
+//         $m = $tmp;
+//     }
+//     return  $m;
+// }
+
+// while(count($clock) > 1){
+//     $m = array_pop($clock);
+//     $n = array_pop($clock);
+//     $clock[] = $m / gcd($m, $n) * $n;
+// }
+
+// print $clock[0];
 
 // var_dump($clock);
 
