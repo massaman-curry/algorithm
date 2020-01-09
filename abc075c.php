@@ -9,24 +9,23 @@
 // 4 6
 // 5 6
 // 6 7
+// for($i = 1; $i <= $n; $i++) $vis[$i] = false;
 
 fscanf(STDIN, "%d %d", $n, $m);
 
-// for($i = 1; $i <= $n; $i++) $vis[$i] = false;
+//-----------------------初期化---------------------------
+$ans = 0;
 
-for($i = 1; $i <= $n; $i++){
-    for($j = 1; $j <= $n; $j++){
+for($i = 0; $i < $n; $i++){
+    for($j = 0; $j < $n; $j++){
         $graph[$i][$j] = false;
     }
 }
 
-while($m--){
-    fscanf(STDIN, "%d %d", $bw, $fw);
-    $graph[$bw][$fw] = $graph[$fw][$bw] = true;
-}
-
 function dfs($a){
     global $vis;
+    global $n;
+    global $graph;
 
     if($vis[$a]) return;
     $vis[$a] = true;
@@ -35,14 +34,24 @@ function dfs($a){
     }
 }
 
-for($i = 1; $i <= $n; $i++){
-    for($j = 1; $j <= $n; $j++){
-        if($graph[$i][$j]) $graph[$i][$j] = $graph[$j][$i] = false;
-        for($k = 1; $k <= $n; $k++) $vis[$k] = false;
-        dfs(1);
-        if(in_array(false, $vis, true)) $ans++;
+//----------------------------------------------------------------
+
+for($i = 0; $i < $m; $i++){
+    fscanf(STDIN, "%d %d", $a[$i], $b[$i]);
+    $a[$i]--;
+    $b[$i]--;
+    $graph[$a[$i]][$b[$i]] = $graph[$b[$i]][$a[$i]] = true;
+}
+
+for($i = 0; $i < $m; $i++){
+    $graph[$a[$i]][$b[$i]] = $graph[$b[$i]][$a[$i]] = false;
+    for($j = 0; $j < $n; $j++) $vis[$j] = false;
+    dfs(0);
+    if(in_array(false, $vis, true)) $ans++;
+    $graph[$a[$i]][$b[$i]] = $graph[$b[$i]][$a[$i]] = true;
+        // $graph[$i][$j] = $graph[$j][$i] = ここで、falseにした値をもとに戻したい。
         // if($bridge) $answer++;
-    }
+
     // for($j = 1; $j <= $n; $j++){
     //     if($graph[$i][$j]) $graph[$i][$j] = $graph[$j][$i] = false;
     //     for($j = 1; $j <= $n; $j++) $vis[$j] = false;
@@ -50,6 +59,8 @@ for($i = 1; $i <= $n; $i++){
     // }
 
 }
+
+print $ans;
 
 
 
