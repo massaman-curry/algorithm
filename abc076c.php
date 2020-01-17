@@ -8,12 +8,16 @@ $t = ['c', 'o', 'd', 'e', 'r'];
 $rslt;
 $ans = 'UNRESTORABLE';
 
-for($i = 0; $i < (count($s) - count($t) + 1); $i++){
-    for($j =0; $j < count($t); $j++){
-        echo $i, $j;
-        if($t[$j] != $s[$i+$j] && $s[$i+$j] != '?') {$rslt = false; break;}
-    }
+for($i = 0; $i < count($s) - count($t) +1; $i++){
+    for($j = 0; $j < count($t); $j++){
+        // echo $t[$j], $s[$i + $j];
+        if($t[$j] != $s[$i + $j]  && $s[$i + $j] != '?') echo $t[$j], $s[$i + $j];
 
+        // if($t[$j] != $s[$i + $j] && $s[$j] != '?') echo $t[$j], $s[$i+$j];
+        // echo $i, $j;
+        // echo $s[$i], $t[$j];
+        // if($t[$j] != $s[$i+$j] && $s[$i+$j] != '?') {$rslt = false; break;}
+    }
 }
 
 if($rslt){
