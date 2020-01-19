@@ -12,23 +12,40 @@ $f = [[1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
 $p = [[0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1],
       [0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1]
 ];
-$sum = 0;
-$cnt = 0;
+
+
+
+
+$sum = [0];
 
 // echo $p[0][1];
+//下の2は、$nに変える
 for($i = 0; $i < 2; $i++){
+    $cnt = 0;
     uasort($p[$i], function($b, $a){
         return $a <=> $b;
     });
+    // var_dump($p[$i]);
     foreach($f[$i] as $v){
-        if($v == 1) $cnt++;
+        // var_dump($v) ;
+        // if($v == 1) $cnt+= 1;
+        $cnt += $v;
     }
+
+    // echo $cnt;
+
+    // echo $cnt;
     // $search = array_keys($p[$i], max($p[$i]));
     // var_dump($search);
     foreach($p[$i] as $k => $v){
-        if($cnt >= $k && $k != 0) $sum += $k;
+        if($cnt >= $k && $k != 0) {
+            // echo $p[$i][$k];
+            $sum[$i + 1] = $sum[$i] + $p[$i][$k];
+        break;
+        }
         // if($f[$i][$k]){$sum += $p[$i][$k]; break;}
     }
 }
 
-print $sum;
+$sum[0] = null;
+echo max($sum);
