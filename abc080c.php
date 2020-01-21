@@ -15,7 +15,7 @@ function score(){
         $cnt = 0;
         for($j = 0; $j < count($f[$i]); $j++){
             if($f[$i][$j] == $a[$j]) $cnt++;
-            $rslt = $p[$i][$cnt];
+            $rslt += $p[$i][$cnt];
         }
     }
     return $rslt;
@@ -27,6 +27,9 @@ function dfs($pos){
     $a[$pos] = 0; dfs($pos + 1);
     $a[$pos] = 1; dfs($pos + 1);
 }
+
+//どこかで利益のmax値を出させないといけない
+
 
 // // 2
 // // 1 1 1 1 1 0 0 0 0 0
