@@ -6,19 +6,22 @@ $f = [[1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
 $p = [[0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1],
       [0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1]
 ];
-
 $a = [];
+$ans = 0;
 
 function score(){
-    $rslt = 0;
+    $r = 0;
     for($i = 0; $i < $n; $i++){
+        
+        global $ans;
         $cnt = 0;
         for($j = 0; $j < count($f[$i]); $j++){
             if($f[$i][$j] == $a[$j]) $cnt++;
-            $rslt += $p[$i][$cnt];
+            $r += $p[$i][$cnt];
+            $ans = max($ans, $r);
         }
     }
-    return $rslt;
+    return $r;
 }
 
 function dfs($pos){
@@ -27,6 +30,9 @@ function dfs($pos){
     $a[$pos] = 0; dfs($pos + 1);
     $a[$pos] = 1; dfs($pos + 1);
 }
+
+dfs(0);
+echo $ans;
 
 //どこかで利益のmax値を出させないといけない
 
