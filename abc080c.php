@@ -1,32 +1,49 @@
 <?php
 
-$f = [[1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
-];
-$p = [[0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1],
-      [0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1]
-];
-$a = [];
-$ans = 0;
+fscanf(STDIN, "%d", $n);
+for($i = 0; $i < $n; $i++){
+    $f[] = array_map('intval', explode(' ', fgets(STDIN)));
+}
+for($i = 0; $i < $n; $i++){
+    $p[] = array_map('intval', explode(' ', fgets(STDIN)));
+}
 
-function score(){
+// $f = [[1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+//       [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+// ];
+// $p = [[0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1],
+//       [0, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1]
+// ];
+$a = [];
+$ans = -100000000;
+
+function calc(){
+    global $ans;
+    global $a;
+    global $n;
+    global $f;
+    global $p;
     $r = 0;
+    $jdg = false;
     for($i = 0; $i < $n; $i++){
-        
-        global $ans;
         $cnt = 0;
         for($j = 0; $j < count($f[$i]); $j++){
-            if($f[$i][$j] == $a[$j]) $cnt++;
-            $r += $p[$i][$cnt];
-            $ans = max($ans, $r);
+            // if($j > 0) $jdg = true;
+            if($f[$i][$j] == 1 && $a[$j] == 1) $cnt++;
         }
+        // if(!$jdg) return;
+        $r += $p[$i][$cnt];
+        $ans = max($ans, $r);
     }
-    return $r;
 }
 
 function dfs($pos){
     global $a;
-    if($pos == 10) score(); return;
+    if($pos == 10){
+        if(array_sum($a) == 0) return;
+        calc();
+        return;
+    }
     $a[$pos] = 0; dfs($pos + 1);
     $a[$pos] = 1; dfs($pos + 1);
 }
@@ -36,6 +53,8 @@ echo $ans;
 
 //どこかで利益のmax値を出させないといけない
 
+// $r += $p[$i][$cnt];
+// $ans = max($ans, $r);
 
 // // 2
 // // 1 1 1 1 1 0 0 0 0 0
