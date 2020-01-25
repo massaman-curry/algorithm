@@ -24,17 +24,16 @@ function calc(){
     global $f;
     global $p;
     $r = 0;
-    $jdg = false;
     for($i = 0; $i < $n; $i++){
         $cnt = 0;
-        for($j = 0; $j < count($f[$i]); $j++){
-            // if($j > 0) $jdg = true;
+        for($j = 0; $j < 10; $j++){
             if($f[$i][$j] == 1 && $a[$j] == 1) $cnt++;
         }
-        // if(!$jdg) return;
         $r += $p[$i][$cnt];
-        $ans = max($ans, $r);
+        //この位置に$ans = max~があると、$ansが$i = 1つまりpの1行目のときの0を覚えてしまい、
+        //ほんとは$i = 2のときに$maxが更新され、--2のはずなのに、されず、正しい値より高い値になってしまう
     }
+    $ans = max($ans, $r);
 }
 
 function dfs($pos){
