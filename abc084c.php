@@ -12,19 +12,23 @@ for($i = 0; $i < $n - 1; $i++){
 
 for($i = 0; $i < $n-1; $i++){
     $sum = $in[$i][1];
-    for($j = $i; $j < $n-2; $j++){
-        if($sum + $in[$j][0] > $in[$j+1][1]){
-            $sum += $in[$j][0];
-            $sum += ($sum - $in[$j][1]) % $in[$j][2];
-            continue;
-        }
-        $sum = $in[$j+1][1];
+    for($j = $i; $j < $n-1; $j++){
+        $sum = max($sum + $in[$j][0], $in[$j + 1][1]);
+        //$in[3][1]がないことが問題
+        //$in[3] = [0, 0, 0];とするのもあり
     }
-    $sum += $in[$n-1][0];
-
     echo $sum;
 }
 echo 0;
+
+
+
+// if($sum + $in[$j][0] > $in[$j+1][1]){
+//     $sum += $in[$j][0];
+//     $sum += ($sum - $in[$j][1]) % $in[$j][2];
+//     continue;
+// }
+// $sum = $in[$j+1][1];
 
         // if($sum < $in[$n-2][1]){
         //     $sum = $in[$n-2][0] + $in[$n-2][1];
