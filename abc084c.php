@@ -8,23 +8,24 @@ fscanf(STDIN, "%d", $n);
 for($i = 0; $i < $n - 1; $i++){
     $in[] = array_map('intval', explode(' ', fgets(STDIN)));
 }
-$in[] = [0, 0, 1];
-//最後が1なのは0だとline19でdivision zeroになるから
+
 // var_dump($in);
 
-for($i = 0; $i < $n-1; $i++){
-    $sum = $in[$i][1];
+for($i = 0; $i < $n; $i++){
+    $sum = 0;
     for($j = $i; $j < $n-1; $j++){
-        $sum = max($sum + $in[$j][0], $in[$j + 1][1]);
-        $sum += ($sum - $in[$j + 1][1]) % $in[$j + 1][2];
-        //$in[3][1]がないことが問題
-        //$in[3] = [0, 0, 0];とするのもあり
+        $sum = max($sum, $in[$j][1]);
+        $sum += ($sum - $in[$j][1]) % $in[$j][2];
+        $sum += $in[$j][0];
     }
     echo $sum ."\n";
 }
-echo 0;
+// echo 0;
 
-
+// $sum = max($sum + $in[$j][0], $in[$j + 1][1]);
+// $sum += ($sum - $in[$j + 1][1]) % $in[$j + 1][2];
+//$in[3][1]がないことが問題
+//$in[3] = [0, 0, 0];とするのもあり
 
 // if($sum + $in[$j][0] > $in[$j+1][1]){
 //     $sum += $in[$j][0];
