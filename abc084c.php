@@ -14,8 +14,9 @@ for($i = 0; $i < $n - 1; $i++){
 for($i = 0; $i < $n; $i++){
     $sum = 0;
     for($j = $i; $j < $n-1; $j++){
-        $sum = max($sum, $in[$j][1]);
-        $sum += ($sum - $in[$j][1]) % $in[$j][2];
+        if($sum < $in[$j][1]) $sum = $in[$j][1];
+        elseif($sum % $in[$j][2] == 0) ;
+        else $sum = $sum + $in[$j][2] - $sum % $in[$j][2];
         $sum += $in[$j][0];
     }
     echo $sum ."\n";
