@@ -7,6 +7,11 @@ $m =[[1, 0, 1],
 $a[0] = 0;
 for($i = 0; $i < 3; $i++) $b[$i] = $m[0][$i] - $a[0];
 for($i = 0; $i < 3; $i++) $a[$i] = $m[$i][0] - $b[0];
+$jdge = 'Yes';
+for($i = 0; $i < 3; $i++){
+    for($j = 0; $j < 3; $j++){
+        if($a[$i] + $b[$j] != $m[$i][$j]) $jdge = 'No';
+    }
+}
 
-print_r($a);
-print_r($b);
+echo $jdge;
