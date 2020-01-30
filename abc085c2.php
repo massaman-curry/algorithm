@@ -8,10 +8,13 @@ $com = [];
 function dfs($pos){
     global $com;
     global $n;
-    if($pos == 3) return $com;
+
+    if($pos == 3){
+        print_r($com);
+        return;
+    };
     for($i = 0; $i <= $n; $i++){
         $com[$pos] = $i;
-        print_r($com);
         dfs($pos + 1);
     }
 }
