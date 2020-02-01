@@ -9,8 +9,8 @@
 $cnt = ['M' => 0, 'A' => 0, 'R' => 0, 'C' => 0, 'H' => 0];
 $c_size = 0;
 $mltpl = 1;
-$nd = 0;
-$dup = 0;
+$other = 0;
+$other_com = 0;
 $ans = 0;
 
 // $in = [];
@@ -24,13 +24,19 @@ foreach($cnt as $v){
         $c_size++;
         $mltpl *= $v;
     }
-    if($v == 1) $nd++;
 }
 //もしかしたらここで$c_sizeの確認をした方が良いかも、$c_sizeが3より大きいか
 $base = ($c_size * ($c_size - 1) * ($c_size - 2)) / 6;
 //もしかしたらここで$ndの確認をした方が良いかも、$ndが3より大きいか
-$dup = ($nd * ($nd - 1) * ($nd -2)) / 6;
-$ans = $mltpl * $base - $dup;
+$other = $n - $c_size;
+
+// $other_com = ($other * ($other - 1) * ($other - 2)) / 6;
+// $nd_com = ($nd * ($nd - 1) * ($nd - 2)) / 6;
+if($base){
+    $ans = $mltpl * $base - $other_com;
+}
+
+echo $ans;
 
 
 // echo $mltpl;
