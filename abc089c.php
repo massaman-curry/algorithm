@@ -2,6 +2,7 @@
 
 $s = 'MARCH';
 $c = [0, 0, 0, 0, 0];
+$ans = 0;
 
 fscanf(STDIN, "%d", $n);
 for($i = 0; $i < $n; $i++){
@@ -11,8 +12,15 @@ for($i = 0; $i < $n; $i++){
     }
 }
 
-var_dump($c);
+for($i = 0; $i < 5; $i++){
+    for($j = $i + 1; $j < 5; $j++){
+        for($k = $j + 1; $k < 5; $k++){
+            $ans += $c[$i] * $c[$j] * $c[$k];
+        }
+    }
+}
 
+echo $ans;
 
 
 
