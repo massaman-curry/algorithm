@@ -31,8 +31,9 @@ for($j = 0; $j < $W; $j++){
                         $found = true;
                   }
             }
+            if(!$found) $ans = false;
+            //L34によって、一度falseが出たら、$ansはtrueにならないようになってる。すげぇ。
       }
 }
 }
-if(!$found) $ans = false;
 echo $ans ? "Yes" : "No";
