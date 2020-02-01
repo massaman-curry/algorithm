@@ -1,4 +1,21 @@
 <?php
+
+$s = 'MARCH';
+$c = [0, 0, 0, 0, 0];
+
+fscanf(STDIN, "%d", $n);
+for($i = 0; $i < $n; $i++){
+    $t = fgets(STDIN);
+    for($j = 0; $j < 5; $j++){
+        if($s[$j] == $t[0]) $c[$j]++;
+    }
+}
+
+var_dump($c);
+
+
+
+
 // 5
 // CHOKUDAI
 // RNG
